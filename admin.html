@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Админ-панель — ЧистоДом</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="logo">🧽 ЧистоДом — Админ</div>
+  <nav><a href="index.html">← На сайт</a></nav>
+</header>
+<section>
+  <h2>Заявки клиентов</h2>
+  <button class="btn" onclick="clearOrders()">Очистить все заявки</button>
+  <div id="orders"></div>
+</section>
+<script>
+function render() {
+  const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+  const box = document.getElementById('orders');
+  if (!orders.length) { box.innerHTML = '<p>Заявок пока нет.</p>'; return; }
+  
+  // ДОБАВЛЕНА КОЛОНКА "КОММЕНТАРИЙ" И ПЕРЕИМЕНОВАНА "ФИО"
+  let html = '<table style="white-space: nowrap;"><tr><th>№</th><th>Услуга</th><th>Кол-во</th><th>Сумма</th><th>ФИО</th><th>Телефон</th><th>Адрес</th><th>Дата</th><th>Комментарий</th><th>Создана</th></tr>';
+  
+  orders.forEach(o => {
+    let totalSqM = 0;
+    let totalPcs = 0;
+    let totalStv = 0;
+    let otherUnits = [];
+
+    if (o.service) {
+      let matches = o.service.match(/\((\d+)\s*([а-яА-Яa-zA-Z.]+)\)/g);
+      if (matches) {
+        matches.forEach(m => {
+          let num = parseInt(m.match(/\d+/)[0]);
+          let unit = m.match(/[а-яА-Яa-zA-Z.]+/)[0];
+          
+          if (unit === 'кв.м') totalSqM += num;
+          else if (unit === 'шт.') totalPcs += num;
+          else if (unit === 'створка') totalStv += num;
+          else otherUnits.push(`${num} ${unit}`);
+        });
+      }
+    }
+
+    let qtyParts = [];
+    if (totalSqM > 0) qtyParts.push(`${totalSqM} кв.м`);
+    if (totalPcs > 0) qtyParts.push(`${totalPcs} шт.`);
+    if (totalStv > 0) qtyParts.push(`${totalStv} ств.`);
+    if (otherUnits.length > 0) qtyParts.push(otherUnits.join(', '));
+    
+    let displayQty = qtyParts.length > 0 ? qtyParts.join(' + ') : '—';
+
+    let formattedDate = o.date;
+    if (o.date && o.date.includes('-')) {
+      let parts = o.date.split('-');
+      formattedDate = `${parts[2]}.${parts[1]}.${parts[0]}`;
+    }
+
+    // Выводим комментарий. Если пустой, ставим прочерк.
+    let displayComment = o.comment ? o.comment : '—';
+
+    html += `<tr>
+      <td>${o.id}</td>
+      <td style="white-space: normal; min-width: 200px;">${o.service}</td>
+      <td><b>${displayQty}</b></td>
+      <td>${o.total}</td>
+      <td>${o.name}</td>
+      <td>${o.phone}</td>
+      <td style="white-space: normal; min-width: 150px;">${o.address}</td>
+      <td>${formattedDate}</td>
+      <td style="white-space: normal; min-width: 150px;">${displayComment}</td>
+      <td>${o.created}</td>
+    </tr>`;
+  });
+  html += '</table>';
+  box.innerHTML = html;
+}
+function clearOrders() {
+  if (confirm('Удалить все заявки?')) { localStorage.removeItem('orders'); render(); }
+}
+render();
+</script>
+</body>
+</html>

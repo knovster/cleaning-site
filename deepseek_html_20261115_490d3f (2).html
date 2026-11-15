@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ЧистоДом — клининговая компания</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .search-input { margin-bottom: 20px; width: 100%; max-width: 400px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; }
+  .multi-select-box { background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 15px; max-height: 350px; overflow-y: auto; }
+  .multi-title { font-weight: bold; margin-bottom: 10px; font-size: 15px; color: #333; }
+  .service-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed #ccc; }
+  .service-row:last-child { border-bottom: none; }
+  .service-row label { font-weight: normal; cursor: pointer; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+  .service-row input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; }
+  .service-row .qty-box { display: flex; align-items: center; gap: 5px; }
+  .service-row input[type="number"] { width: 60px; padding: 5px; margin-top: 0; text-align: center; }
+  .service-row input[type="number"]:disabled { background: #e9ecef; cursor: not-allowed; }
+  .unit-label { font-size: 12px; color: #666; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🧽 ЧистоДом</div>
+  <nav>
+    <a href="#services">Услуги</a>
+    <a href="#order">Заказать</a>
+    <a href="admin.html">Админка</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Профессиональная уборка вашего дома</h1>
+  <p>Быстро, качественно, с гарантией. Более 20 видов услуг!</p>
+  <a href="#order" class="btn">Заказать уборку</a>
+</section>
+
+<section id="services">
+  <h2>Наши услуги</h2>
+  <input type="text" id="search" placeholder="🔍 Поиск услуги (например: окна, диван, офис)..." class="search-input">
+  
+  <div class="cards" id="servicesList">
+    <div class="card"><div class="icon">🏠</div><h3>Уборка квартиры</h3><p>Влажная уборка, вынос мусора.</p><span>80 ₽ / кв.м</span></div>
+    <div class="card"><div class="icon">🪟</div><h3>Мытьё окон</h3><p>С двух сторон, включая рамы.</p><span>350 ₽ / створка</span></div>
+    <div class="card"><div class="icon">🛋️</div><h3>Химчистка дивана</h3><p>Сухая и влажная химчистка.</p><span>1500 ₽ / шт.</span></div>
+    <div class="card"><div class="icon">🔨</div><h3>Уборка после ремонта</h3><p>Удаление строительной пыли.</p><span>150 ₽ / кв.м</span></div>
+    <div class="card"><div class="icon">✨</div><h3>Генеральная уборка</h3><p>Полная уборка всех помещений.</p><span>120 ₽ / кв.м</span></div>
+    <div class="card"><div class="icon">💡</div><h3>Мытьё люстр</h3><p>Снятие, мытьё и сборка.</p><span>500 ₽ / шт.</span></div>
+    <div class="card"><div class="icon">🟫</div><h3>Химчистка ковра</h3><p>Глубокая чистка ворса.</p><span>300 ₽ / кв.м</span></div>
+    <div class="card"><div class="icon">🏢</div><h3>Уборка офиса</h3><p>Ежедневная или разовая уборка.</p><span>90 ₽ / кв.м</span></div>
+    <div class="card"><div class="icon">🧊</div><h3>Мытьё холодильника</h3><p>Разморозка и дезинфекция.</p><span>400 ₽ / шт.</span></div>
+    <div class="card"><div class="icon">🍳</div><h3>Чистка плит</h3><p>Удаление жира и нагара.</p><span>350 ₽ / шт.</span></div>
+    <div class="card"><div class="icon">🛏️</div><h3>Химчистка матраса</h3><p>Удаление пылевых клещей.</p><span>1200 ₽ / шт.</span></div>
+    <div class="card"><div class="icon">🌅</div><h3>Уборка балкона</h3><p>Вымыть полы, окна, стены.</p><span>100 ₽ / кв.м</span></div>
+    <div class="card"><div class="icon">🪞</div><h3>Чистка зеркал</h3><p>Без разводов и пыли.</p><span>150 ₽ / шт.</span></div>
+    <div class="card"><div class="icon">🧹</div><h3>Мытьё полов</h3><p>С дезинфицирующими средствами.</p><span>50 ₽ / кв.м</span></div>
+    <div class="card"><div class="icon">🪑</div><h3>Полировка мебели</h3><p>Защита дерева и блеск.</p><span>200 ₽ / шт.</span></div>
+    <div class="card"><div class="icon">🍽️</div><h3>Уборка кухни</h3><p>Чистка фартука, плиты, раковины.</p><span>110 ₽ / кв.м</span></div>
+    <div class="card"><div class="icon">🛁</div><h3>Чистка ванной</h3><p>Удаление налёта и ржавчины.</p><span>130 ₽ / кв.м</span></div>
+    <div class="card"><div class="icon">💺</div><h3>Химчистка стульев</h3><p>Обивка и каркас.</p><span>400 ₽ / шт.</span></div>
+    <div class="card"><div class="icon">❄️</div><h3>Уборка снега</h3><p>Расчистка дорожек зимой.</p><span>100 ₽ / кв.м</span></div>
+    <div class="card"><div class="icon">🌿</div><h3>Стрижка газона</h3><p>Летний уход за участком.</p><span>80 ₽ / кв.м</span></div>
+  </div>
+</section>
+
+<section id="order">
+  <h2>Оформить заказ (можно выбрать несколько)</h2>
+  <form id="orderForm">
+    <div class="multi-select-box">
+      <p class="multi-title">Выберите услуги и укажите количество:</p>
+      
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Уборка квартиры" data-price="80" data-unit="кв.м"> Уборка квартиры (80 ₽/кв.м)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">кв.м</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Мытьё окон" data-price="350" data-unit="створка"> Мытьё окон (350 ₽/створка)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">ств.</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Химчистка дивана" data-price="1500" data-unit="шт."> Химчистка дивана (1500 ₽/шт.)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">шт.</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Уборка после ремонта" data-price="150" data-unit="кв.м"> Уборка после ремонта (150 ₽/кв.м)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">кв.м</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Генеральная уборка" data-price="120" data-unit="кв.м"> Генеральная уборка (120 ₽/кв.м)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">кв.м</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Мытьё люстр" data-price="500" data-unit="шт."> Мытьё люстр (500 ₽/шт.)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">шт.</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Химчистка ковра" data-price="300" data-unit="кв.м"> Химчистка ковра (300 ₽/кв.м)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">кв.м</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Уборка офиса" data-price="90" data-unit="кв.м"> Уборка офиса (90 ₽/кв.м)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">кв.м</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Мытьё холодильника" data-price="400" data-unit="шт."> Мытьё холодильника (400 ₽/шт.)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">шт.</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Чистка кухонных плит" data-price="350" data-unit="шт."> Чистка кухонных плит (350 ₽/шт.)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">шт.</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Химчистка матраса" data-price="1200" data-unit="шт."> Химчистка матраса (1200 ₽/шт.)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">шт.</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Уборка балкона" data-price="100" data-unit="кв.м"> Уборка балкона (100 ₽/кв.м)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">кв.м</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Чистка зеркал" data-price="150" data-unit="шт."> Чистка зеркал (150 ₽/шт.)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">шт.</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Мытьё полов" data-price="50" data-unit="кв.м"> Мытьё полов (50 ₽/кв.м)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">кв.м</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Полировка мебели" data-price="200" data-unit="шт."> Полировка мебели (200 ₽/шт.)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">шт.</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Уборка кухни" data-price="110" data-unit="кв.м"> Уборка кухни (110 ₽/кв.м)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">кв.м</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Чистка ванной" data-price="130" data-unit="кв.м"> Чистка ванной (130 ₽/кв.м)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">кв.м</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Химчистка стульев" data-price="400" data-unit="шт."> Химчистка стульев (400 ₽/шт.)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">шт.</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Уборка снега" data-price="100" data-unit="кв.м"> Уборка снега (100 ₽/кв.м)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">кв.м</span></div>
+      </div>
+      <div class="service-row">
+        <label><input type="checkbox" class="srv-check" data-name="Стрижка газона" data-price="80" data-unit="кв.м"> Стрижка газона (80 ₽/кв.м)</label>
+        <div class="qty-box"><input type="number" class="srv-qty" min="1" value="1" disabled> <span class="unit-label">кв.м</span></div>
+      </div>
+    </div>
+
+    <label>Итоговая стоимость
+      <input type="text" id="total" readonly value="0 ₽" style="background: #e9ecef; font-weight: bold;">
+    </label>
+    
+    <!-- ТУТ ИЗМЕНЕНО НА ФИО -->
+    <label>ФИО <input type="text" id="name" required placeholder="Иванов Иван Иванович"></label>
+    
+    <label>Телефон <input type="tel" id="phone" required placeholder="+7 900 000-00-00"></label>
+    <label>Адрес <input type="text" id="address" required placeholder="г. Москва, ул. ..."></label>
+    
+    <label>Дата уборки 
+      <input type="date" id="date" required>
+      <small style="color: #666; font-weight: normal; margin-top: 4px; display: block;">Выберите дату начиная с сегодняшнего дня</small>
+    </label>
+    
+    <label>Комментарий <textarea id="comment" rows="2" placeholder="Необязательно"></textarea></label>
+
+    <button type="submit" class="btn">Оформить заказ</button>
+  </form>
+  <div id="result" class="result"></div>
+</section>
+
+<footer>
+  <p>© 2026 ЧистоДом — клининговая компания. Все права защищены.</p>
+</footer>
+
+<script>
+const dateInput = document.getElementById('date');
+const today = new Date();
+const yyyy = today.getFullYear();
+const mm = String(today.getMonth() + 1).padStart(2, '0');
+const dd = String(today.getDate()).padStart(2, '0');
+const todayStr = `${yyyy}-${mm}-${dd}`;
+
+dateInput.min = todayStr;
+dateInput.value = todayStr;
+
+const searchInput = document.getElementById('search');
+const cards = document.querySelectorAll('.card');
+searchInput.addEventListener('input', function() {
+  const val = this.value.toLowerCase();
+  cards.forEach(card => {
+    card.style.display = card.textContent.toLowerCase().includes(val) ? 'block' : 'none';
+  });
+});
+
+const checkBoxes = document.querySelectorAll('.srv-check');
+const totalInput = document.getElementById('total');
+
+checkBoxes.forEach(cb => {
+  cb.addEventListener('change', function() {
+    const qtyInput = this.closest('.service-row').querySelector('.srv-qty');
+    qtyInput.disabled = !this.checked;
+    calcTotal();
+  });
+});
+
+document.querySelectorAll('.srv-qty').forEach(input => {
+  input.addEventListener('input', calcTotal);
+});
+
+function calcTotal() {
+  let total = 0;
+  checkBoxes.forEach(cb => {
+    if (cb.checked) {
+      const price = parseInt(cb.dataset.price);
+      const qty = parseInt(cb.closest('.service-row').querySelector('.srv-qty').value) || 0;
+      total += price * qty;
+    }
+  });
+  totalInput.value = total + ' ₽';
+}
+
+const form = document.getElementById('orderForm');
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  let selectedServices = [];
+  checkBoxes.forEach(cb => {
+    if (cb.checked) {
+      const name = cb.dataset.name;
+      const qty = cb.closest('.service-row').querySelector('.srv-qty').value;
+      const unit = cb.dataset.unit;
+      selectedServices.push(`${name} (${qty} ${unit})`);
+    }
+  });
+
+  if (selectedServices.length === 0) {
+    alert('Пожалуйста, выберите хотя бы одну услугу!');
+    return;
+  }
+
+  const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+  const order = {
+    id: orders.length + 1,
+    service: selectedServices.join(', '),
+    total: totalInput.value,
+    name: document.getElementById('name').value,
+    phone: document.getElementById('phone').value,
+    address: document.getElementById('address').value,
+    date: document.getElementById('date').value,
+    comment: document.getElementById('comment').value,
+    created: new Date().toLocaleString('ru-RU')
+  };
+  orders.push(order);
+  localStorage.setItem('orders', JSON.stringify(orders));
+  
+  document.getElementById('result').innerHTML =
+    '✅ Заявка №' + order.id + ' принята! Итоговая стоимость: <b>' + order.total + '</b>. Мы позвоним вам.';
+  
+  form.reset();
+  dateInput.value = todayStr;
+
+  checkBoxes.forEach(cb => {
+    cb.checked = false;
+    cb.closest('.service-row').querySelector('.srv-qty').disabled = true;
+    cb.closest('.service-row').querySelector('.srv-qty').value = 1;
+  });
+  totalInput.value = '0 ₽';
+});
+</script>
+</body>
+</html>
